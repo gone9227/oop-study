@@ -1,9 +1,51 @@
 package com.oop;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class LottoMachine {
     private final Random random = new Random();
+
+    public void processLottoNumbers(int numberOfLotto) {
+        for (int i = 0; i < numberOfLotto; i++) {
+            System.out.print(i + "번째 번호는 ?? ");
+            LottoNumber lottoNumber = generateNumber();
+            System.out.print(lottoNumber);
+            printResult(matchNumber(lottoNumber));
+        }
+    }
+
+    private void printResult(int rank) {
+        if (rank == -1) {
+            System.out.println("-> 당첨결과 꽝입니다. 다음을 기약해주세요.");
+            return;
+        }
+        System.out.println("-> 당첨결과 " + rank + "등입니다. 축하드립니다.");
+    }
+
+    public int takeOrder(Scanner sc) {
+        int numberOfLotto;
+        try {
+            numberOfLotto = Integer.parseInt(sc.nextLine());
+        } catch (NumberFormatException nfe) {
+            System.out.println("숫자만 입력해주세요.");
+            return -1;
+        }
+
+        if(numberOfLotto <= 0) {
+            System.out.println(numberOfLotto + "개는 구매할 수 없습니다. 다시 입력해주세요.");
+            return -1;
+        }
+        if(numberOfLotto > 20) {
+            System.out.println("20개 초과로 구매할 수 없습니다. 다시 입력해주세요.");
+            return -1;
+        }
+        return numberOfLotto;
+    }
+
+    public boolean isValid(int numberOfLotto) {
+        return numberOfLotto != -1;
+    }
 
     public LottoNumber generateNumber() {
         LottoNumber lottoNumber = new LottoNumber();

@@ -11,9 +11,4 @@ class MainTest {
         Main.main(new String[]{});
     }
 
-    @Test
-    public void tooManyOrders() {
-
-    }
-
 }
