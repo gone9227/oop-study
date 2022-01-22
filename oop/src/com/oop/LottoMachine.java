@@ -1,10 +1,29 @@
 package com.oop;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class LottoMachine {
     private final Random random = new Random();
+
+    public int takeOrder(String numberOfOrders) {
+        int numberOfLotto;
+        try {
+            numberOfLotto = Integer.parseInt(numberOfOrders);
+        } catch (NumberFormatException nfe) {
+            System.out.println("숫자만 입력해주세요.");
+            return -1;
+        }
+
+        if(numberOfLotto <= 0) {
+            System.out.println(numberOfLotto + "개는 구매할 수 없습니다. 다시 입력해주세요.");
+            return -1;
+        }
+        if(numberOfLotto > 20) {
+            System.out.println("20개 초과로 구매할 수 없습니다. 다시 입력해주세요.");
+            return -1;
+        }
+        return numberOfLotto;
+    }
 
     public void processLottoNumbers(int numberOfLotto) {
         for (int i = 0; i < numberOfLotto; i++) {
@@ -21,26 +40,6 @@ public class LottoMachine {
             return;
         }
         System.out.println("-> 당첨결과 " + rank + "등입니다. 축하드립니다.");
-    }
-
-    public int takeOrder(Scanner sc) {
-        int numberOfLotto;
-        try {
-            numberOfLotto = Integer.parseInt(sc.nextLine());
-        } catch (NumberFormatException nfe) {
-            System.out.println("숫자만 입력해주세요.");
-            return -1;
-        }
-
-        if(numberOfLotto <= 0) {
-            System.out.println(numberOfLotto + "개는 구매할 수 없습니다. 다시 입력해주세요.");
-            return -1;
-        }
-        if(numberOfLotto > 20) {
-            System.out.println("20개 초과로 구매할 수 없습니다. 다시 입력해주세요.");
-            return -1;
-        }
-        return numberOfLotto;
     }
 
     public boolean isValid(int numberOfLotto) {

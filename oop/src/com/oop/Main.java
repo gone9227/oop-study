@@ -10,7 +10,8 @@ public class Main {
 
         while (true) {
             System.out.println("몇 개를 구매하시겠습니까?");
-            int numberOfLotto = lottoMachine.takeOrder(sc);
+            String numberOfOrders = sc.nextLine();
+            int numberOfLotto = lottoMachine.takeOrder(numberOfOrders);
             if (!lottoMachine.isValid(numberOfLotto)) continue;
 
             System.out.println("로또 번호 생성중 ...");
